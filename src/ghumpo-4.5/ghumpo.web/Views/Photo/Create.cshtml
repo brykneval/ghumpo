@@ -1,0 +1,28 @@
+﻿@model ghumpo.web.ViewModel.PhotoViewModel
+@{
+}
+
+@using (Html.BeginForm("Create", "Photo", FormMethod.Post, new {@class = "form-horizontal", role = "form", enctype = "multipart/form-data"}))
+{
+    <h4>Restaurant's Photos</h4>
+    <hr/>
+    <div class="col-md-10">
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+            <div class="form-group">
+                @Html.Label("Photos", new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.ImageFile, new {type = "file", multiple = "multiple"})
+                    @Html.ValidationMessageFor(model => model.ImageFile, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default"/>
+                </div>
+                @Html.ActionLink("Skip", "Create", "LocalBusiness")
+            </div>
+        </div>
+    </div>
+}
